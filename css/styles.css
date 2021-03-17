@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Muli", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /*take up entire viewport height*/
+  overflow: hidden; /*no scroll bars by default*/
+  margin: 0;
+}
+
+/*all children in our container will flex display horizontally*/
+.container {
+  display: flex;
+  width: 90vw; /*container will occupy 90% of the total viewport*/
+}
+
+.panel {
+  background-size: cover; /*background size of images*/
+  background-position: center; /*initial position of background image*/
+  background-repeat: no-repeat; /*the images will not repeat*/
+  image-rendering: optimizeQuality;
+  height: 80vh;
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+  flex: 0.5;
+  margin: 10px;
+  position: relative; /*to control the h3's inside the panels*/
+  -webkit-transition: all 700ms ease-in; /*boxes get bigger over time*/
+}
+
+.panel h3 {
+  font-size: 24px;
+  position: absolute;
+  bottom: 20px; /*20 pixels from the bottom of the panel*/
+  left: 20px; /*20 pixels from the right of the panel*/
+  margin: 0;
+  opacity: 0;
+}
+
+/*if the panel is active*/
+.panel.active {
+  flex: 3;
+}
+
+/*if the panel is active, display the h3*/
+.panel.active h3 {
+  opacity: 1;
+  transition: opacity 0.3s ease-in 0.4s;
+}
+
+/*if the screen is under 480px, show three panels instead of 5*/
+@media screen and (max-width: 680px) {
+  .container {
+    width: 100vw;
+  }
+
+  .panel:nth-of-type(4),
+  .panel:nth-of-type(5) {
+    display: none;
+  }
+}
